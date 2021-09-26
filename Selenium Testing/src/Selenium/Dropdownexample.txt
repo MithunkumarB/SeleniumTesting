@@ -1,0 +1,88 @@
+package Selenium;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+
+
+public class Dropdownexample {
+
+	public static void main(String[] args) throws InterruptedException {
+
+
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\ELCOT\\Downloads\\Driver\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("http://www.leafground.com/pages/Dropdown.html");
+
+		// SELECT DROPU DOWN USING INDEX
+
+		WebElement dropdown = driver.findElement(By.id("dropdown1"));
+		
+		Select select = new Select(dropdown);
+		
+		select.selectByIndex(2); // select by index sometime different languages mention in DROPDOWN we can use index
+		
+	//	Thread.sleep(3000);
+		
+		select.selectByValue("3"); // we can get inspect -> value
+	//	Thread.sleep(3000);
+		
+		select.selectByVisibleText("Selenium"); // we can get inspect -> value -> visible text
+		
+		
+		//GET ALL DROPDOWN OPTIONS
+		
+		List<WebElement> listofoptions = select.getOptions(); //<WebElement> = we are store web elements so use, its called generics
+		
+		int sizeoflist = listofoptions.size(); 
+		
+		System.out.println(sizeoflist);
+		
+		
+		//SELECT PARTICULAR DROPDOWN VALUE
+		
+		dropdown.sendKeys("Loadrunner"); // we can use sendkeys for dropdown as well.
+		
+		// SELECT DROPDOWN MULTIPLE VALUES
+		
+		WebElement dropdownall = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[6]/select"));
+		
+		Select multiselect = new Select(dropdownall);
+		
+		
+		multiselect.selectByIndex(1);
+		multiselect.selectByIndex(2);
+		multiselect.selectByIndex(3);
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+	}
+
+}

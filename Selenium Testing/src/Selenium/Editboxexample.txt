@@ -1,0 +1,45 @@
+package Selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Editbox {
+
+	public static void main(String[] args) {
+		
+
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\ELCOT\\Downloads\\Driver\\chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://www.leafground.com/pages/Link.html");
+		
+		driver.findElement(By.linkText("Go to Home Page")).click();
+		
+		driver.findElement(By.xpath("//*[@id=\'post-153\']/div[2]/div/ul/li[1]/a/img")).click();
+		
+		driver.findElement(By.id("email")).sendKeys("mithu@gmail.com");
+		
+		driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[2]/div/div/input")).sendKeys("Mithun Kumar");
+		
+		String value = driver.findElement(By.name("username")).getAttribute("value");
+		
+		System.out.println(value);
+		
+		driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[4]/div/div/input")).clear();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}
