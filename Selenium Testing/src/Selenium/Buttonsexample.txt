@@ -1,0 +1,72 @@
+package Selenium;
+
+import java.awt.Point;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
+public class Buttons {
+
+	public static void main(String[] args) {
+	
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\ELCOT\\Downloads\\Driver\\chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://www.leafground.com/pages/Button.html");
+		
+		WebElement getpositionbutton =  driver.findElement(By.id("position"));
+		
+		org.openqa.selenium.Point xpoint = getpositionbutton.getLocation();
+		
+		int xvalue  = xpoint.getX();
+		int yvalue = xpoint.getY();
+		System.out.println(xvalue + "and" + yvalue);
+		
+		// FOND BUTTON COLOR
+		
+		WebElement getbuttoncolor = driver.findElement(By.id("color"));
+		
+		String color = getbuttoncolor.getCssValue("background-color"); 
+		
+		System.out.println("Button color is: "+ color);
+		
+		// fIND BUTTON SIZE
+		
+		WebElement findbuttonsize = driver.findElement(By.id("size"));
+		
+		int height = findbuttonsize.getSize().getHeight();
+		
+		int weidth = findbuttonsize.getSize().getWidth();
+		
+		System.out.println(height + "and" + weidth);
+		
+		// CLICK BUTTON
+		
+		WebElement justclickbutton = driver.findElement(By.id("home"));
+		
+		justclickbutton.click();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

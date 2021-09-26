@@ -1,0 +1,51 @@
+package Selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CheckboxExample {
+
+	public static void main(String[] args) {
+		
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\ELCOT\\Downloads\\Driver\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("http://www.leafground.com/pages/checkbox.html");
+		
+		WebElement selectbox = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[1]/div[1]/input"));
+		selectbox.click();
+		
+		WebElement confimcheck = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[2]/div/input"));
+		boolean status = confimcheck.isSelected();
+		System.out.println(status);
+		
+		WebElement deselect = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[3]/div[1]/input"));
+		if(deselect.isSelected())
+		{
+			deselect.click();
+		}
+		
+		WebElement select = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[3]/div[1]/input"));
+		if(select.isSelected())
+		{
+			select.click();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}
