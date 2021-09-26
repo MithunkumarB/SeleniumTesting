@@ -1,0 +1,67 @@
+package Selenium;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alertexample {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\ELCOT\\Downloads\\Driver\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("http://www.leafground.com/pages/Alert.html");
+		
+		WebElement alertbox = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[1]/div/div/button"));
+		alertbox.click();
+		
+		Alert alert = driver.switchTo().alert();  // NOW ALERT USE FOR SWITCH CURSOR TO ALERTBOX
+		Thread.sleep(3000);
+		alert.accept();  //accept means Ok.
+		
+		
+		WebElement confirmbox = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[2]/div/div/button"));
+		confirmbox.click();
+		
+		Alert confimalert = driver.switchTo().alert();
+		Thread.sleep(3000);
+		alert.dismiss(); // dismiss means cancel
+		
+		WebElement promtbox = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[3]/div/div/button"));
+		promtbox.click();
+		
+		Alert promtalert = driver.switchTo().alert();
+		
+		promtalert.sendKeys("Good Morning");           // we can enter text in alert
+		Thread.sleep(3000);
+		promtalert.accept();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}
