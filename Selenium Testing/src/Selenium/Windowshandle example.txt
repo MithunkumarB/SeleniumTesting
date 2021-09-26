@@ -1,0 +1,72 @@
+package Selenium;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.net.OlderWindowsVersionEphemeralPortDetector;
+
+public class Windowshandle {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\ELCOT\\Downloads\\Driver\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("http://www.leafground.com/pages/Window.html");
+		// GET AND SAVE CURRENT opened WINDOWS
+		String oldwindow = driver.getWindowHandle(); 
+		
+		WebElement opennewwindow = driver.findElement(By.id("home"));
+		opennewwindow.click();
+		
+		// THIS FOR GET AND SAVE ALL OPENED WINDOWS
+		Set<String> handles = driver.getWindowHandles();
+		
+		for(String newWindow : handles) // HANDLES HAVE MULTIPLE WINDOWS SO NEED TO SWITCH ANOTHER WINDOWS SO USE FORLOOP
+		{
+			driver.switchTo().window(newWindow); // THIS FOR MOVE NEWLY OPENED WINDOW
+		}
+		
+		WebElement editbox = driver.findElement(By.xpath("//*[@id=\'post-153\']/div[2]/div/ul/li[1]/a"));
+		editbox.click();
+		
+		driver.close(); // CLOSE CURRENT WINDOW
+		
+		driver.switchTo().window(oldwindow);  //COME AGAIN NEW TO OLD WINDOW
+		
+		WebElement findmultiplewindows = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[2]/div/div/button"));
+		findmultiplewindows.click();
+		int numofwindows = driver.getWindowHandles().size(); // USE FOR GET OPENED WINDOWS COUNT
+		System.out.println(numofwindows);
+		
+		WebElement dontclosecurrentwindow = driver.findElement(By.xpath("//*[@id=\'color\']"));
+		dontclosecurrentwindow.click();
+		
+		Set<String> closenewwindow = driver.getWindowHandles();
+		
+		for(String allwindows : closenewwindow)
+		{
+			if(!allwindows.equals(oldwindow))  // NEWWINDOWS ARE NOTEQUAL TO PARANT MEANS CLOSE NEW WINDOWS
+				{
+					driver.switchTo().window(allwindows);  // HERE IFCONDITION NOT SATISFIED MOVE TO ANOTHER CHILD WINDOWS
+					driver.close();                        // SO CLOSE CHILDWINDOW
+				}
+		}
+		
+		driver.quit(); //   CLOSE ALL CHILD AND PARANT WINDOWS
+		//driver.close  == close the particular opened child windows
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}
